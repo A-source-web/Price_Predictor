@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bangalore House Predictor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+      .img {
+        background-image: linear-gradient(
+            to bottom,
+            rgb(40 206 204 / 50%),
+            rgb(114 113 116)
+          ),
+          url("https://images.alphacoders.com/435/435117.jpg");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-size: 100% 100%;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .form {
+        max-width: 270px;
+        font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+        font-weight: normal;
+        line-height: 1.625;
+        margin: 120px auto;
+        padding-left: 16px;
+        z-index: 2;
+        text-align: center;
+      }
+      .users {
+        font-family: serif, Helvetica, sans-serif;
+      }
+      .submit {
+        background: linear-gradient(to bottom, #616161, #9bc5c3);
+        width: 100%;
+        border: 0;
+        margin: 25px 0 10px;
+        box-sizing: border-box;
+        font-size: 28px;
+        height: 56px;
+        text-align: center;
+        border-radius: 27px;
+      }
+      .location {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: linear-gradient(to bottom, #616161, #9bc5c3);
+        width: 76%;
+        border: 0;
+        margin: 0 0 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+        height: 39px;
+        border-radius: 16px;
+      }
+      .area {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: linear-gradient(to bottom, #616161, #9bc5c3);
+        width: 76%;
+        border: 0;
+        margin: 0 0 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+        height: 39px;
+        border-radius: 16px;
+      }
+      .switch-field input {
+        position: absolute !important;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        width: 1px;
+        border: 0;
+        overflow: hidden;
+      }
+      .switch-field label {
+        background: linear-gradient(to bottom, #616161, #9bc5c3);
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+        line-height: 1;
+        text-align: center;
+        padding: 8px 16px;
+        margin-right: -1px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),
+          0 1px rgba(255, 255, 255, 0.1);
+        transition: all 0.1s ease-in-out;
+      }
+      .switch-field label:hover {
+        cursor: pointer;
+        background: palevioletred;
+      }
+      .switch-field label:first-of-type {
+        border-radius: 8px 0 0 8px;
+      }
+
+      .switch-field label:last-of-type {
+        border-radius: 0 8px 8px 0;
+      }
+      .switch-field input:checked + label {
+        background-color: palevioletred;
+        box-shadow: none;
+      }
+      .result {
+        background: linear-gradient(to bottom, #ddd6f3, #faaca8);
+        width: 100%;
+        border: 0;
+        margin: 25px 0 10px;
+        box-sizing: border-box;
+        font-size: 22px;
+        height: 62px;
+        text-align: center;
+        border-radius: 37px;
+      }
+      .submit:hover {
+        cursor: pointer;
+        background: palevioletred;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img"></div>
+    <form action="" class="form">
+      <h2 class="users">Area (Square Feet)</h2>
+      <input
+        class="area"
+        type="text"
+        id="uiSqft"
+        class="floatLabel"
+        name="Squareft"
+        value="1000"
+      />
+      <h2 class="users">BHK</h2>
+      <div class="switch-field">
+        <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" />
+        <label for="radio-bhk-1">1</label>
+        <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked />
+        <label for="radio-bhk-2">2</label>
+        <input type="radio" id="radio-bhk-3" name="uiBHK" value="3" />
+        <label for="radio-bhk-3">3</label>
+        <input type="radio" id="radio-bhk-4" name="uiBHK" value="4" />
+        <label for="radio-bhk-4">4</label>
+        <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" />
+        <label for="radio-bhk-5">5</label>
+      </div>
+      <h2 class="users">Bath</h2>
+      <div class="switch-field">
+        <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1" />
+        <label for="radio-bath-1">1</label>
+        <input
+          type="radio"
+          id="radio-bath-2"
+          name="uiBathrooms"
+          value="2"
+          checked
+        />
+        <label for="radio-bath-2">2</label>
+        <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3" />
+        <label for="radio-bath-3">3</label>
+        <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4" />
+        <label for="radio-bath-4">4</label>
+        <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5" />
+        <label for="radio-bath-5">5</label>
+      </div>
+      <h2 class="users">Location</h2>
+      <div>
+        <select class="location" name="" id="uiLocations">
+          <option value="" disabled="disabled" selected="selected">
+            Choose a Location
+          </option>
+          <option>Electronic City</option>
+          <option>Rajaji Nagar</option>
+        </select>
+      </div>
+      <button class="submit" onclick="onClickedEstimatePrice()" type="button">
+        Estimate Price
+      </button>
+      <div id="uiEstimatedPrice" class="result"><h2></h2></div>
+    </form>
+  </body>
+</html>
